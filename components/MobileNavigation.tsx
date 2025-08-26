@@ -42,16 +42,17 @@ const MobileNavigation = ({
         alt="logo"
         width={160}
         height={52}
-        className="h-auto"
+        className="h-auto w-[140px] sm:w-[160px]"
       />
 
       <Sheet open={open} onOpenChange={setOpen}>
-        <SheetTrigger aria-label="Open navigation menu">
+        <SheetTrigger aria-label="Open navigation menu" className="p-2">
           <Image
             src="/assets/icons/menu.svg"
             alt="Menu"
-            width={30}
-            height={30}
+            width={24}
+            height={24}
+            className="sm:w-[30px] sm:h-[30px]"
           />
         </SheetTrigger>
         <SheetContent className="shad-sheet h-screen px-3">

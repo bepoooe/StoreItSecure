@@ -42,10 +42,10 @@ export const Chart = ({ used = 0 }: { used: number }) => {
     <Card className="chart">
       <CardContent className="flex-1 p-0 flex items-center justify-center">
         <div className="text-center">
-          <div className="w-32 h-32 rounded-full border-4 border-white/20 flex items-center justify-center mb-4">
-            <span className="text-2xl font-bold text-white">0%</span>
+          <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-white/20 flex items-center justify-center mb-3 sm:mb-4">
+            <span className="text-xl sm:text-2xl font-bold text-white">0%</span>
           </div>
-          <p className="text-white/70">Space used</p>
+          <p className="text-white/70 text-sm sm:text-base">Space used</p>
         </div>
       </CardContent>
       <CardHeader className="chart-details">
@@ -67,15 +67,16 @@ export const Chart = ({ used = 0 }: { used: number }) => {
               data={chartData}
               startAngle={90}
               endAngle={Math.min(safePercentage + 90, 450)} // Cap at 450 to prevent overflow
-              innerRadius={80}
-              outerRadius={110}
+              innerRadius={60}
+              outerRadius={80}
+              className="sm:innerRadius-80 sm:outerRadius-110"
             >
               <PolarGrid
                 gridType="circle"
                 radialLines={false}
                 stroke="none"
                 className="polar-grid"
-                polarRadius={[86, 74]}
+                polarRadius={[66, 54]}
               />
               <RadialBar dataKey="size" background cornerRadius={10} />
               <PolarRadiusAxis tick={false} tickLine={false} axisLine={false}>

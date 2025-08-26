@@ -73,7 +73,7 @@ const Search = () => {
             {results.length > 0 ? (
               results.map((file) => (
                 <li
-                  className="flex items-center justify-between cursor-pointer"
+                  className="flex items-center justify-between cursor-pointer p-2 rounded-lg hover:bg-light-400/50 transition-colors"
                   key={file.$id}
                   onClick={() => handleClickItem(file)}
                   role="option"
@@ -84,21 +84,21 @@ const Search = () => {
                     }
                   }}
                 >
-                  <div className="flex cursor-pointer items-center gap-4">
+                  <div className="flex cursor-pointer items-center gap-2 sm:gap-4 flex-1 min-w-0">
                     <Thumbnail
                       type={file.type}
                       extension={file.extension}
                       url={file.url}
-                      className="size-9 min-w-9"
+                      className="size-8 min-w-8 sm:size-9 sm:min-w-9"
                     />
-                    <p className="subtitle-2 line-clamp-1 text-light-100">
+                    <p className="subtitle-2 line-clamp-1 text-light-100 flex-1">
                       {file.name}
                     </p>
                   </div>
 
                   <FormattedDateTime
                     date={file.$createdAt}
-                    className="caption line-clamp-1 text-light-200"
+                    className="caption line-clamp-1 text-light-200 hidden sm:block"
                   />
                 </li>
               ))

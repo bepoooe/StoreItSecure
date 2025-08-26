@@ -61,33 +61,38 @@ const Dashboard = async () => {
 
       {/* Recent files uploaded */}
       <section className="dashboard-recent-files">
-        <h2 className="h3 xl:h2 text-light-100">Recent files uploaded</h2>
+        <h2 className="h4 sm:h3 xl:h2 text-light-100 mb-3 sm:mb-4">Recent files uploaded</h2>
         {files.documents.length > 0 ? (
-          <ul className="mt-5 flex flex-col gap-5">
+          <ul className="mt-3 sm:mt-5 flex flex-col gap-3 sm:gap-5">
             {files.documents.map((file: Models.Document) => (
-              <Link
-                href={file.url}
-                target="_blank"
-                className="flex items-center gap-3"
-                key={file.$id}
-              >
-                <Thumbnail
-                  type={file.type}
-                  extension={file.extension}
-                  url={file.url}
-                />
+              <li key={file.$id} className="recent-file-item">
+                <Link
+                  href={file.url}
+                  target="_blank"
+                  className="flex items-center gap-2 sm:gap-3 p-2 sm:p-0 rounded-lg hover:bg-light-400/30 transition-colors"
+                >
+                  <Thumbnail
+                    type={file.type}
+                    extension={file.extension}
+                    url={file.url}
+                    className="!size-10 sm:!size-12 flex-shrink-0"
+                  />
 
-                <div className="recent-file-details">
-                  <div className="flex flex-col gap-1">
-                    <p className="recent-file-name">{file.name}</p>
-                    <FormattedDateTime
-                      date={file.$createdAt}
-                      className="caption"
-                    />
+                  <div className="recent-file-details flex-1 min-w-0">
+                    <div className="flex flex-col gap-1">
+                      <p className="recent-file-name">{file.name}</p>
+                      <FormattedDateTime
+                        date={file.$createdAt}
+                        className="recent-file-date"
+                      />
+                    </div>
                   </div>
-                  <ActionDropdown file={file} />
-                </div>
-              </Link>
+                  
+                  <div className="flex-shrink-0">
+                    <ActionDropdown file={file} />
+                  </div>
+                </Link>
+              </li>
             ))}
           </ul>
         ) : (

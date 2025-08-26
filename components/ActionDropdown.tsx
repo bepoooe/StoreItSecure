@@ -141,12 +141,13 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
   return (
     <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
       <DropdownMenu open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
-        <DropdownMenuTrigger className="shad-no-focus">
+        <DropdownMenuTrigger className="shad-no-focus p-1 rounded-md hover:bg-light-400/50 transition-colors">
           <Image
             src="/assets/icons/dots.svg"
             alt="Actions menu"
-            width={34}
-            height={34}
+            width={24}
+            height={24}
+            className="sm:w-[34px] sm:h-[34px]"
           />
         </DropdownMenuTrigger>
         <DropdownMenuContent>

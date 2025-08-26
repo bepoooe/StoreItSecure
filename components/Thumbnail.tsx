@@ -34,7 +34,7 @@ export const Thumbnail = ({
         width={100}
         height={100}
         className={cn(
-          "size-8 object-contain",
+          "size-6 sm:size-8 object-contain",
           imageClassName,
           isImage && "thumbnail-image",
         )}

@@ -237,7 +237,7 @@
     @apply mt-3 grid grid-cols-2 gap-2 sm:mt-4 sm:gap-3 sm:grid-cols-1 md:mt-6 md:gap-4 md:grid-cols-2 lg:grid-cols-2 xl:mt-10 xl:gap-9 !important;
   }
   .dashboard-summary-card {
-    @apply relative mt-3 rounded-[16px] bg-white p-3 transition-all hover:scale-105 active:scale-95 sm:mt-4 sm:rounded-[20px] sm:p-4 md:p-5 shadow-sm hover:shadow-md !important;
+    @apply relative mt-3 rounded-[16px] bg-white p-3 transition-all hover:scale-105 sm:mt-4 sm:rounded-[20px] sm:p-4 md:p-5 !important;
   }
   .summary-type-icon {
     @apply absolute -left-2 top-[-20px] z-10 w-[140px] sm:-left-3 sm:top-[-25px] sm:w-[190px] object-contain !important;
@@ -251,17 +251,14 @@
   .dashboard-recent-files {
     @apply h-full rounded-[16px] bg-white p-3 sm:rounded-[20px] sm:p-4 md:p-5 lg:p-6 xl:p-8 !important;
   }
-  .recent-file-item {
-    @apply border-b border-light-300/50 last:border-b-0 pb-2 sm:pb-3 last:pb-0 !important;
-  }
   .recent-file-details {
     @apply flex w-full flex-col gap-1 sm:gap-0 xl:flex-row xl:justify-between !important;
   }
   .recent-file-name {
-    @apply subtitle-2 line-clamp-1 w-full text-light-100 max-w-[180px] sm:max-w-[160px] md:max-w-[180px] lg:max-w-[220px] xl:max-w-[300px] !important;
+    @apply subtitle-2 line-clamp-1 w-full text-light-100 sm:max-w-[160px] md:max-w-[180px] lg:max-w-[220px] xl:max-w-[300px] !important;
   }
   .recent-file-date {
-    @apply caption text-light-100/70 !important;
+    @apply caption sm:body-2 text-light-100/80 !important;
   }
   .empty-list {
     @apply body-2 sm:body-1 mt-6 sm:mt-10 text-center text-light-200 !important;
@@ -332,9 +329,6 @@
 
   /* AuthForm */
   .auth-left-section {
-    background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%) !important;
-  }
-  .auth-mobile-header {
     background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%) !important;
   }
   .auth-form {
@@ -479,7 +473,7 @@
 
   /* Thumbnail */
   .thumbnail {
-    @apply flex-center size-[40px] sm:size-[50px] min-w-[40px] sm:min-w-[50px] overflow-hidden rounded-full bg-brand/10;
+    @apply flex-center size-[50px] min-w-[50px] overflow-hidden rounded-full bg-brand/10;
   }
   .thumbnail-image {
     @apply size-full object-cover object-center !important;
