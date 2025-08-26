@@ -3,10 +3,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { signOutUser } from "@/lib/actions/user.actions";
 
-const LandingPage = () => {
+interface User {
+  $id: string;
+  fullName: string;
+  email: string;
+  avatar: string;
+}
+
+const LandingPage = ({ user }: { user?: User | null }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [currentFeature, setCurrentFeature] = useState(0);
+  const [showUserMenu, setShowUserMenu] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
@@ -15,6 +24,31 @@ const LandingPage = () => {
     }, 3000);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (!target.closest('.user-menu-container')) {
+        setShowUserMenu(false);
+      }
+    };
+
+    if (showUserMenu) {
+      document.addEventListener('click', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [showUserMenu]);
+
+  const handleLogout = async () => {
+    try {
+      await signOutUser();
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
 
   const features = [
     {
@@ -54,26 +88,93 @@ const LandingPage = () => {
       </div>
 
       {/* Header */}
-      <header className="relative z-10 px-6 py-6">
+      <header className="relative z-10 px-4 sm:px-6 py-4 sm:py-6">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-2 sm:space-x-3">
             <Image
               src="/assets/icons/logo-brand-blue.svg"
               alt="StoreItSecure"
-              width={40}
-              height={40}
-              className="animate-pulse"
+              width={32}
+              height={32}
+              className="sm:w-10 sm:h-10 animate-pulse"
             />
-            <h1 className="text-2xl font-bold text-dark-100 font-poppins">
+            <h1 className="text-lg sm:text-2xl font-bold text-dark-100 font-poppins">
               StoreItSecure
             </h1>
           </div>
-          <Link
-            href="/sign-in"
-            className="px-6 py-2 text-brand font-medium hover:text-brand/80 transition-colors duration-200"
-          >
-            Sign In
-          </Link>
+          
+          {user ? (
+            <div className="flex items-center gap-2 sm:gap-4">
+              <div className="relative user-menu-container">
+                <button
+                  onClick={() => setShowUserMenu(!showUserMenu)}
+                  className="flex items-center gap-2 sm:gap-3 px-2 sm:px-4 py-2 rounded-lg hover:bg-light-300/50 transition-colors duration-200"
+                >
+                  <Image
+                    src={user.avatar}
+                    alt={user.fullName}
+                    width={28}
+                    height={28}
+                    className="sm:w-8 sm:h-8 rounded-full"
+                  />
+                  <span className="text-light-100 font-medium text-sm sm:text-base hidden sm:inline">
+                    {user.fullName.split(' ')[0]}
+                  </span>
+                  <Image
+                    src="/assets/icons/arrow-up.svg"
+                    alt="Menu"
+                    width={14}
+                    height={14}
+                    className={`sm:w-4 sm:h-4 transition-transform duration-200 ${showUserMenu ? 'rotate-180' : ''}`}
+                  />
+                </button>
+                
+                {showUserMenu && (
+                  <div className="absolute right-0 top-full mt-2 bg-white rounded-lg shadow-drop-2 border border-light-300 py-2 min-w-[180px] sm:min-w-[200px] z-50">
+                    <Link
+                      href="/dashboard"
+                      className="flex items-center gap-3 px-4 py-2 text-dark-100 hover:bg-light-300/50 transition-colors duration-200 text-sm sm:text-base"
+                      onClick={() => setShowUserMenu(false)}
+                    >
+                      <Image
+                        src="/assets/icons/dashboard.svg"
+                        alt="Dashboard"
+                        width={16}
+                        height={16}
+                      />
+                      Dashboard
+                    </Link>
+                    <button
+                      onClick={handleLogout}
+                      className="flex items-center gap-3 px-4 py-2 text-dark-100 hover:bg-light-300/50 transition-colors duration-200 w-full text-left text-sm sm:text-base"
+                    >
+                      <Image
+                        src="/assets/icons/logout.svg"
+                        alt="Logout"
+                        width={16}
+                        height={16}
+                      />
+                      Sign Out
+                    </button>
+                  </div>
+                )}
+              </div>
+              <Link
+                href="/dashboard"
+                className="px-3 sm:px-6 py-2 bg-gradient-to-r from-brand to-brand-100 text-white font-medium rounded-lg hover:shadow-drop-2 transition-all duration-200 text-sm sm:text-base"
+              >
+                <span className="hidden sm:inline">Go to Dashboard</span>
+                <span className="sm:hidden">Dashboard</span>
+              </Link>
+            </div>
+          ) : (
+            <Link
+              href="/sign-in"
+              className="px-4 sm:px-6 py-2 text-brand font-medium hover:text-brand/80 transition-colors duration-200 text-sm sm:text-base"
+            >
+              Sign In
+            </Link>
+          )}
         </div>
       </header>
 
@@ -98,27 +199,55 @@ const LandingPage = () => {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link
-                  href="/sign-up"
-                  className="group px-8 py-4 bg-gradient-to-r from-brand to-brand-100 text-white font-semibold rounded-xl shadow-drop-2 hover:shadow-drop-3 transform hover:scale-105 transition-all duration-300 text-center"
-                >
-                  <span className="flex items-center justify-center gap-2">
-                    Get Started
-                    <Image
-                      src="/assets/icons/arrow-up.svg"
-                      alt="Arrow"
-                      width={16}
-                      height={16}
-                      className="rotate-45 group-hover:rotate-90 transition-transform duration-300"
-                    />
-                  </span>
-                </Link>
-                <Link
-                  href="#features"
-                  className="px-8 py-4 border-2 border-brand text-brand font-semibold rounded-xl hover:bg-brand hover:text-white transition-all duration-300 text-center"
-                >
-                  Learn More
-                </Link>
+                {user ? (
+                  <>
+                    <Link
+                      href="/dashboard"
+                      className="group px-8 py-4 bg-gradient-to-r from-brand to-brand-100 text-white font-semibold rounded-xl shadow-drop-2 hover:shadow-drop-3 transform hover:scale-105 transition-all duration-300 text-center"
+                    >
+                      <span className="flex items-center justify-center gap-2">
+                        Go to Dashboard
+                        <Image
+                          src="/assets/icons/arrow-up.svg"
+                          alt="Arrow"
+                          width={16}
+                          height={16}
+                          className="rotate-45 group-hover:rotate-90 transition-transform duration-300"
+                        />
+                      </span>
+                    </Link>
+                    <Link
+                      href="#features"
+                      className="px-8 py-4 border-2 border-brand text-brand font-semibold rounded-xl hover:bg-brand hover:text-white transition-all duration-300 text-center"
+                    >
+                      Learn More
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      href="/sign-up"
+                      className="group px-8 py-4 bg-gradient-to-r from-brand to-brand-100 text-white font-semibold rounded-xl shadow-drop-2 hover:shadow-drop-3 transform hover:scale-105 transition-all duration-300 text-center"
+                    >
+                      <span className="flex items-center justify-center gap-2">
+                        Get Started
+                        <Image
+                          src="/assets/icons/arrow-up.svg"
+                          alt="Arrow"
+                          width={16}
+                          height={16}
+                          className="rotate-45 group-hover:rotate-90 transition-transform duration-300"
+                        />
+                      </span>
+                    </Link>
+                    <Link
+                      href="#features"
+                      className="px-8 py-4 border-2 border-brand text-brand font-semibold rounded-xl hover:bg-brand hover:text-white transition-all duration-300 text-center"
+                    >
+                      Learn More
+                    </Link>
+                  </>
+                )}
               </div>
 
               {/* Stats */}
@@ -253,18 +382,37 @@ const LandingPage = () => {
         
         <div className="max-w-4xl mx-auto text-center relative">
           <div className={`space-y-8 ${isVisible ? 'animate-fade-in-up delay-1000' : 'opacity-0'}`}>
-            <h3 className="text-4xl font-bold text-dark-100">
-              Ready to Secure Your Files?
-            </h3>
-            <p className="text-xl text-light-200">
-              Join thousands of users who trust StoreItSecure with their valuable data
-            </p>
-            <Link
-              href="/sign-up"
-              className="inline-block px-10 py-5 bg-gradient-to-r from-brand to-brand-100 text-white font-bold text-lg rounded-xl shadow-drop-2 hover:shadow-drop-3 transform hover:scale-105 transition-all duration-300"
-            >
-              Get Started Now
-            </Link>
+            {user ? (
+              <>
+                <h3 className="text-4xl font-bold text-dark-100">
+                  Welcome back to StoreItSecure!
+                </h3>
+                <p className="text-xl text-light-200">
+                  Continue managing your files securely in your dashboard
+                </p>
+                <Link
+                  href="/dashboard"
+                  className="inline-block px-10 py-5 bg-gradient-to-r from-brand to-brand-100 text-white font-bold text-lg rounded-xl shadow-drop-2 hover:shadow-drop-3 transform hover:scale-105 transition-all duration-300"
+                >
+                  Access Dashboard
+                </Link>
+              </>
+            ) : (
+              <>
+                <h3 className="text-4xl font-bold text-dark-100">
+                  Ready to Secure Your Files?
+                </h3>
+                <p className="text-xl text-light-200">
+                  Join thousands of users who trust StoreItSecure with their valuable data
+                </p>
+                <Link
+                  href="/sign-up"
+                  className="inline-block px-10 py-5 bg-gradient-to-r from-brand to-brand-100 text-white font-bold text-lg rounded-xl shadow-drop-2 hover:shadow-drop-3 transform hover:scale-105 transition-all duration-300"
+                >
+                  Get Started Now
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </section>
