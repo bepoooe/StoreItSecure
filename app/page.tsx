@@ -2,6 +2,8 @@ import { getCurrentUser } from "@/lib/actions/user.actions";
 import { redirect } from "next/navigation";
 import LandingPage from "@/components/LandingPage";
 
+export const dynamic = "force-dynamic";
+
 const HomePage = async () => {
   try {
     const currentUser = await getCurrentUser();
