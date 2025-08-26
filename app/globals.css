@@ -202,18 +202,18 @@
 
   /* Root Layout */
   .main-content {
-    @apply remove-scrollbar h-full flex-1 overflow-auto bg-light-400 px-5 py-7 sm:mr-7 sm:rounded-[30px] md:mb-7 md:px-9 md:py-10 !important;
+    @apply remove-scrollbar h-full flex-1 overflow-auto bg-light-400 px-3 py-5 sm:mr-7 sm:px-5 sm:py-7 sm:rounded-[30px] md:mb-7 md:px-9 md:py-10 !important;
   }
 
   /* Dashboard */
   .dashboard-container {
-    @apply mx-auto grid max-w-7xl grid-cols-1 gap-6 md:grid-cols-2 xl:gap-10 !important;
+    @apply mx-auto grid max-w-7xl grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 xl:gap-10 !important;
   }
   .dashboard-summary-list {
-    @apply mt-6 grid grid-cols-1 gap-4 xl:mt-10 xl:grid-cols-2 xl:gap-9 !important;
+    @apply mt-4 grid grid-cols-1 gap-3 sm:mt-6 sm:gap-4 md:grid-cols-2 lg:grid-cols-2 xl:mt-10 xl:gap-9 !important;
   }
   .dashboard-summary-card {
-    @apply relative mt-6 rounded-[20px] bg-white p-5 transition-all hover:scale-105 !important;
+    @apply relative mt-4 rounded-[20px] bg-white p-4 transition-all hover:scale-105 sm:mt-6 sm:p-5 !important;
   }
   .summary-type-icon {
     @apply absolute -left-3 top-[-25px] z-10 w-[190px] object-contain !important;
@@ -225,13 +225,13 @@
     @apply h5 relative z-20 text-center !important;
   }
   .dashboard-recent-files {
-    @apply h-full rounded-[20px] bg-white p-5 xl:p-8 !important;
+    @apply h-full rounded-[20px] bg-white p-3 sm:p-5 lg:p-6 xl:p-8 !important;
   }
   .recent-file-details {
     @apply flex w-full flex-col xl:flex-row xl:justify-between !important;
   }
   .recent-file-name {
-    @apply subtitle-2 line-clamp-1 w-full text-light-100 sm:max-w-[200px] lg:max-w-[250px] !important;
+    @apply subtitle-2 line-clamp-1 w-full text-light-100 sm:max-w-[180px] md:max-w-[200px] lg:max-w-[250px] xl:max-w-[300px] !important;
   }
   .recent-file-date {
     @apply body-2 text-light-100/80 !important;
@@ -242,7 +242,7 @@
 
   /* Type page */
   .page-container {
-    @apply mx-auto flex w-full max-w-7xl flex-col items-center gap-8 !important;
+    @apply mx-auto flex w-full max-w-7xl flex-col items-center gap-4 px-4 sm:gap-6 md:gap-8 md:px-6 lg:px-8 !important;
   }
   .total-size-section {
     @apply flex mt-2 flex-col justify-between sm:flex-row sm:items-center !important;
@@ -330,19 +330,19 @@
 
   /* Chart */
   .chart {
-    @apply flex items-center rounded-[20px] bg-brand p-5 text-white md:flex-col xl:flex-row !important;
+    @apply flex items-center rounded-[20px] bg-brand p-3 text-white sm:p-4 md:flex-col md:p-5 xl:flex-row !important;
   }
   .chart-container {
-    @apply mx-auto aspect-square w-[180px] text-white xl:w-[250px] !important;
+    @apply mx-auto aspect-square w-[140px] text-white sm:w-[160px] md:w-[180px] lg:w-[200px] xl:w-[250px] !important;
   }
   .polar-grid {
     @apply first:fill-white/20 last:fill-brand !important;
   }
   .chart-details {
-    @apply flex-1 items-start px-3 py-0 sm:px-5 lg:p-3 xl:pr-5 !important;
+    @apply flex-1 items-start px-2 py-0 sm:px-3 md:px-5 lg:p-3 xl:pr-5 !important;
   }
   .chart-total-percentage {
-    @apply fill-white text-4xl font-bold !important;
+    @apply fill-white text-2xl font-bold sm:text-3xl md:text-4xl !important;
   }
   .chart-title {
     @apply h3 font-bold md:text-center lg:text-left !important;

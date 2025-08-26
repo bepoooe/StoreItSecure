@@ -142,7 +142,7 @@ export const getFileIcon = (
     case "webm":
     case "m4v":
     case "3gp":
-      return "/assets/icons/file-video-light-blue.svg"; // Using blue-themed video icon
+      return "/assets/icons/video-blue.svg"; // Using new blue video icon
     // Audio
     case "mp3":
     case "mpeg":
@@ -163,7 +163,7 @@ export const getFileIcon = (
         case "document":
           return "/assets/icons/file-document-light-blue.svg";
         case "video":
-          return "/assets/icons/file-video-light-blue.svg"; // Using blue-themed video icon
+          return "/assets/icons/video-blue.svg"; // Using new blue video icon
         case "audio":
           return "/assets/icons/file-audio.svg";
         default:

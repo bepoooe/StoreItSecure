@@ -22,7 +22,7 @@ export const Thumbnail = ({
   // Use thumbnail-specific icons for video thumbnails
   const getThumbIcon = () => {
     if (isImage) return url;
-    if (type === "video") return "/assets/icons/file-video-light-blue.svg"; // Blue-themed video icon
+    if (type === "video") return "/assets/icons/video-blue.svg"; // New blue video icon
     return getFileIcon(extension, type);
   };
 
