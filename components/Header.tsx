@@ -24,10 +24,10 @@ const Header = ({
             await signOutUser();
           }}
         >
-          <Button type="submit" className="sign-out-button">
+          <Button type="submit" className="sign-out-button" aria-label="Sign out">
             <Image
               src="/assets/icons/logout-blue.svg"
-              alt="logo"
+              alt="Sign out"
               width={24}
               height={24}
               className="w-6"

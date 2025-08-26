@@ -173,8 +173,8 @@
   .shad-sheet {
     @apply pt-0 !important;
   }
-  .shad-sheet button,
-  .shad-dialog button {
+  .shad-sheet button:focus,
+  .shad-dialog button:focus {
     @apply focus:ring-0 focus:ring-offset-0 focus-visible:border-none outline-none focus-visible:outline-none focus-visible:ring-transparent focus-visible:ring-offset-0 !important;
   }
   .shad-dropdown-item {
@@ -293,6 +293,14 @@
   }
   .remove-icon {
     @apply aspect-square rounded-full !important;
+  }
+
+  .error-toast {
+    @apply border-error bg-error/5 text-error !important;
+  }
+  
+  .empty-result {
+    @apply body-2 text-light-200 text-center py-4 !important;
   }
 
   /* AuthForm */

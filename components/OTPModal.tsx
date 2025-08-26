@@ -68,11 +68,11 @@ const OtpModal = ({
             Enter Your OTP
             <Image
               src="/assets/icons/close-dark.svg"
-              alt="close"
+              alt="Close modal"
               width={20}
               height={20}
               onClick={() => setIsOpen(false)}
-              className="otp-close-button"
+              className="otp-close-button cursor-pointer"
             />
           </AlertDialogTitle>
           <AlertDialogDescription className="subtitle-2 text-center text-light-100">

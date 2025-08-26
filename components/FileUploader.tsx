@@ -107,7 +107,7 @@ const FileUploader = ({ ownerId, accountId, className }: Props) => {
                       src="/assets/icons/file-loader.gif"
                       width={80}
                       height={26}
-                      alt="Loader"
+                      alt="File uploading"
                     />
                   </div>
                 </div>
@@ -116,8 +116,9 @@ const FileUploader = ({ ownerId, accountId, className }: Props) => {
                   src="/assets/icons/remove.svg"
                   width={24}
                   height={24}
-                  alt="Remove"
+                  alt="Remove file"
                   onClick={(e) => handleRemoveFile(e, file.name)}
+                  className="cursor-pointer"
                 />
               </li>
             );

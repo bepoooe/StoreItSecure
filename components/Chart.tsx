@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import {
   Label,
   PolarGrid,
@@ -29,72 +30,101 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export const Chart = ({ used = 0 }: { used: number }) => {
-  const chartData = [{ storage: "used", 10: used, fill: "white" }];
+  // Ensure used is a valid number
+  const safeUsed = typeof used === 'number' && !isNaN(used) && used >= 0 ? used : 0;
+  const percentage = calculatePercentage(safeUsed);
+  const safePercentage = typeof percentage === 'number' && !isNaN(percentage) ? percentage : 0;
+  
+  const chartData = [{ storage: "used", size: safeUsed, fill: "white" }];
 
-  return (
+  // Fallback component for error cases
+  const ChartFallback = () => (
     <Card className="chart">
-      <CardContent className="flex-1 p-0">
-        <ChartContainer config={chartConfig} className="chart-container">
-          <RadialBarChart
-            data={chartData}
-            startAngle={90}
-            endAngle={Number(calculatePercentage(used)) + 90}
-            innerRadius={80}
-            outerRadius={110}
-          >
-            <PolarGrid
-              gridType="circle"
-              radialLines={false}
-              stroke="none"
-              className="polar-grid"
-              polarRadius={[86, 74]}
-            />
-            <RadialBar dataKey="storage" background cornerRadius={10} />
-            <PolarRadiusAxis tick={false} tickLine={false} axisLine={false}>
-              <Label
-                content={({ viewBox }) => {
-                  if (viewBox && "cx" in viewBox && "cy" in viewBox) {
-                    return (
-                      <text
-                        x={viewBox.cx}
-                        y={viewBox.cy}
-                        textAnchor="middle"
-                        dominantBaseline="middle"
-                      >
-                        <tspan
-                          x={viewBox.cx}
-                          y={viewBox.cy}
-                          className="chart-total-percentage"
-                        >
-                          {used && calculatePercentage(used)
-                            ? calculatePercentage(used)
-                                .toString()
-                                .replace(/^0+/, "")
-                            : "0"}
-                          %
-                        </tspan>
-                        <tspan
-                          x={viewBox.cx}
-                          y={(viewBox.cy || 0) + 24}
-                          className="fill-white/70"
-                        >
-                          Space used
-                        </tspan>
-                      </text>
-                    );
-                  }
-                }}
-              />
-            </PolarRadiusAxis>
-          </RadialBarChart>
-        </ChartContainer>
+      <CardContent className="flex-1 p-0 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-32 h-32 rounded-full border-4 border-white/20 flex items-center justify-center mb-4">
+            <span className="text-2xl font-bold text-white">0%</span>
+          </div>
+          <p className="text-white/70">Space used</p>
+        </div>
       </CardContent>
       <CardHeader className="chart-details">
         <CardTitle className="chart-title">Available Storage</CardTitle>
         <CardDescription className="chart-description">
-          {used ? convertFileSize(used) : "2GB"} / 2GB
+          0 GB / 2GB
         </CardDescription>
       </CardHeader>
     </Card>
   );
+
+  // Error handling for chart rendering
+  try {
+    return (
+      <Card className="chart">
+        <CardContent className="flex-1 p-0">
+          <ChartContainer config={chartConfig} className="chart-container">
+            <RadialBarChart
+              data={chartData}
+              startAngle={90}
+              endAngle={Math.min(safePercentage + 90, 450)} // Cap at 450 to prevent overflow
+              innerRadius={80}
+              outerRadius={110}
+            >
+              <PolarGrid
+                gridType="circle"
+                radialLines={false}
+                stroke="none"
+                className="polar-grid"
+                polarRadius={[86, 74]}
+              />
+              <RadialBar dataKey="size" background cornerRadius={10} />
+              <PolarRadiusAxis tick={false} tickLine={false} axisLine={false}>
+                <Label
+                  content={({ viewBox }) => {
+                    if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+                      return (
+                        <text
+                          x={viewBox.cx}
+                          y={viewBox.cy}
+                          textAnchor="middle"
+                          dominantBaseline="middle"
+                        >
+                          <tspan
+                            x={viewBox.cx}
+                            y={viewBox.cy}
+                            className="chart-total-percentage"
+                          >
+                            {safePercentage > 0 
+                              ? safePercentage.toString().replace(/^0+/, "") || "0"
+                              : "0"}
+                            %
+                          </tspan>
+                          <tspan
+                            x={viewBox.cx}
+                            y={(viewBox.cy || 0) + 24}
+                            className="fill-white/70"
+                          >
+                            Space used
+                          </tspan>
+                        </text>
+                      );
+                    }
+                  }}
+                />
+              </PolarRadiusAxis>
+            </RadialBarChart>
+          </ChartContainer>
+        </CardContent>
+        <CardHeader className="chart-details">
+          <CardTitle className="chart-title">Available Storage</CardTitle>
+          <CardDescription className="chart-description">
+            {safeUsed > 0 ? convertFileSize(safeUsed) : "0 GB"} / 2GB
+          </CardDescription>
+        </CardHeader>
+      </Card>
+    );
+  } catch (error) {
+    console.error("Chart rendering error:", error);
+    return <ChartFallback />;
+  }
 };

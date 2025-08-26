@@ -58,6 +58,7 @@ export const ShareInput = ({ file, onInputChange, onRemove }: Props) => {
           placeholder="Enter email address"
           onChange={(e) => onInputChange(e.target.value.trim().split(","))}
           className="share-input-field"
+          aria-label="Enter email addresses to share file with"
         />
         <div className="pt-4">
           <div className="flex justify-between">
@@ -77,10 +78,11 @@ export const ShareInput = ({ file, onInputChange, onRemove }: Props) => {
                 <Button
                   onClick={() => onRemove(email)}
                   className="share-remove-user"
+                  aria-label={`Remove ${email} from shared users`}
                 >
                   <Image
                     src="/assets/icons/remove.svg"
-                    alt="Remove"
+                    alt="Remove user"
                     width={24}
                     height={24}
                     className="remove-icon"

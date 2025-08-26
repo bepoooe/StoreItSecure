@@ -46,10 +46,10 @@ const MobileNavigation = ({
       />
 
       <Sheet open={open} onOpenChange={setOpen}>
-        <SheetTrigger>
+        <SheetTrigger aria-label="Open navigation menu">
           <Image
             src="/assets/icons/menu.svg"
-            alt="Search"
+            alt="Menu"
             width={30}
             height={30}
           />

@@ -65,16 +65,24 @@ const Search = () => {
           placeholder="Search..."
           className="search-input"
           onChange={(e) => setQuery(e.target.value)}
+          aria-label="Search files"
         />
 
         {open && (
-          <ul className="search-result">
+          <ul className="search-result" role="listbox" aria-label="Search results">
             {results.length > 0 ? (
               results.map((file) => (
                 <li
-                  className="flex items-center justify-between"
+                  className="flex items-center justify-between cursor-pointer"
                   key={file.$id}
                   onClick={() => handleClickItem(file)}
+                  role="option"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      handleClickItem(file);
+                    }
+                  }}
                 >
                   <div className="flex cursor-pointer items-center gap-4">
                     <Thumbnail

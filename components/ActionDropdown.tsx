@@ -88,7 +88,7 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
     const { value, label } = action;
 
     return (
-      <DialogContent className="shad-dialog button">
+      <DialogContent className="shad-dialog">
         <DialogHeader className="flex flex-col gap-3">
           <DialogTitle className="text-center text-light-100">
             {label}
@@ -125,7 +125,7 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
               {isLoading && (
                 <Image
                   src="/assets/icons/loader.svg"
-                  alt="loader"
+                  alt="Loading"
                   width={24}
                   height={24}
                   className="animate-spin"
@@ -144,7 +144,7 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
         <DropdownMenuTrigger className="shad-no-focus">
           <Image
             src="/assets/icons/dots.svg"
-            alt="dots"
+            alt="Actions menu"
             width={34}
             height={34}
           />
