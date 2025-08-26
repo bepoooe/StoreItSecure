@@ -120,44 +120,9 @@ const LandingPage = ({ user }: { user?: User | null }) => {
                   <span className="text-light-100 font-medium text-sm sm:text-base hidden sm:inline">
                     {user.fullName.split(' ')[0]}
                   </span>
-                  <Image
-                    src="/assets/icons/arrow-up.svg"
-                    alt="Menu"
-                    width={14}
-                    height={14}
-                    className={`sm:w-4 sm:h-4 transition-transform duration-200 ${showUserMenu ? 'rotate-180' : ''}`}
-                  />
                 </button>
                 
-                {showUserMenu && (
-                  <div className="absolute right-0 top-full mt-2 bg-white rounded-lg shadow-drop-2 border border-light-300 py-2 min-w-[180px] sm:min-w-[200px] z-50">
-                    <Link
-                      href="/dashboard"
-                      className="flex items-center gap-3 px-4 py-2 text-dark-100 hover:bg-light-300/50 transition-colors duration-200 text-sm sm:text-base"
-                      onClick={() => setShowUserMenu(false)}
-                    >
-                      <Image
-                        src="/assets/icons/dashboard.svg"
-                        alt="Dashboard"
-                        width={16}
-                        height={16}
-                      />
-                      Dashboard
-                    </Link>
-                    <button
-                      onClick={handleLogout}
-                      className="flex items-center gap-3 px-4 py-2 text-dark-100 hover:bg-light-300/50 transition-colors duration-200 w-full text-left text-sm sm:text-base"
-                    >
-                      <Image
-                        src="/assets/icons/logout.svg"
-                        alt="Logout"
-                        width={16}
-                        height={16}
-                      />
-                      Sign Out
-                    </button>
-                  </div>
-                )}
+                {showUserMenu && null}
               </div>
               <Link
                 href="/dashboard"
@@ -207,13 +172,6 @@ const LandingPage = ({ user }: { user?: User | null }) => {
                     >
                       <span className="flex items-center justify-center gap-2">
                         Go to Dashboard
-                        <Image
-                          src="/assets/icons/arrow-up.svg"
-                          alt="Arrow"
-                          width={16}
-                          height={16}
-                          className="rotate-45 group-hover:rotate-90 transition-transform duration-300"
-                        />
                       </span>
                     </Link>
                     <Link
@@ -231,13 +189,6 @@ const LandingPage = ({ user }: { user?: User | null }) => {
                     >
                       <span className="flex items-center justify-center gap-2">
                         Get Started
-                        <Image
-                          src="/assets/icons/arrow-up.svg"
-                          alt="Arrow"
-                          width={16}
-                          height={16}
-                          className="rotate-45 group-hover:rotate-90 transition-transform duration-300"
-                        />
                       </span>
                     </Link>
                     <Link
