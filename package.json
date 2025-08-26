@@ -1,12 +1,16 @@
 {
   "name": "store-it-secure",
-  "version": "0.1.0",
+  "version": "1.1.0",
+  "description": "A modernized secure storage platform with sky blue theme. Built with Next.js, TypeScript, and Appwrite for enhanced security and user experience.",
+  "keywords": ["nextjs", "typescript", "appwrite", "file-storage", "secure", "blue-theme", "react", "tailwindcss"],
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:appwrite": "node test-appwrite.js",
+    "test:permissions": "node test-api-permissions.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",

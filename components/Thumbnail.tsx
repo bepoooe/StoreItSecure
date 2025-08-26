@@ -18,11 +18,18 @@ export const Thumbnail = ({
   className,
 }: Props) => {
   const isImage = type === "image" && extension !== "svg";
+  
+  // Use thumbnail-specific icons for video thumbnails
+  const getThumbIcon = () => {
+    if (isImage) return url;
+    if (type === "video") return "/assets/icons/file-video-light-blue.svg"; // Blue-themed video icon
+    return getFileIcon(extension, type);
+  };
 
   return (
     <figure className={cn("thumbnail", className)}>
       <Image
-        src={isImage ? url : getFileIcon(extension, type)}
+        src={getThumbIcon()}
         alt="thumbnail"
         width={100}
         height={100}
