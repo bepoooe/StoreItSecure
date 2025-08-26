@@ -12,6 +12,18 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "StoreItSecure",
   description: "StoreItSecure - The most secure storage solution you need.",
+  icons: {
+    icon: [
+      {
+        url: "/favicon.svg",
+        type: "image/svg+xml",
+      },
+      {
+        url: "/assets/icons/logo-brand-blue.svg",
+        type: "image/svg+xml",
+      }
+    ],
+  },
 };
 
 export default function RootLayout({
