@@ -47,7 +47,7 @@ const OtpModal = ({
       if (result?.sessionId) {
         setIsOpen(false);
         // Use window.location for a hard redirect to ensure session is recognized
-        window.location.href = "/";
+        window.location.href = "/dashboard";
       }
     } catch (error) {
       console.log("Failed to verify OTP", error);
