@@ -304,6 +304,9 @@
   }
 
   /* AuthForm */
+  .auth-left-section {
+    background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%) !important;
+  }
   .auth-form {
     @apply flex max-h-[800px] w-full max-w-[580px] flex-col justify-center space-y-6 transition-all lg:h-full lg:space-y-8 !important;
   }

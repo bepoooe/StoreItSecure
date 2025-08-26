@@ -4,17 +4,20 @@ import Image from "next/image";
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="flex min-h-screen">
-      <section className="hidden w-1/2 items-center justify-center bg-white p-10 lg:flex xl:w-2/5">
+      <section 
+        className="hidden w-1/2 items-center justify-center p-10 lg:flex xl:w-2/5"
+        style={{ background: 'linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%)' }}
+      >
         <div className="flex max-h-[800px] max-w-[430px] flex-col justify-center space-y-12">
           <Image
-            src="/assets/icons/logo-full-storeit-secure-blue.svg"
+            src="/assets/icons/logo-full-storeit-secure-white.svg"
             alt="logo"
             width={350}
             height={150}
             className="h-auto"
           />
 
-          <div className="space-y-5 text-brand">
+          <div className="space-y-5 text-white">
             <h1 className="h1">Secure and Store your files in One-Click.</h1>
             <p className="body-1">
               Your Trusted Document Vault
