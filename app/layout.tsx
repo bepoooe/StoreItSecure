@@ -21,14 +21,27 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/favicon.svg",
+        url: "/assets/icons/logo-brand-blue.svg",
         type: "image/svg+xml",
       },
+      {
+        url: "/favicon.svg", 
+        type: "image/svg+xml",
+      }
+    ],
+    apple: [
       {
         url: "/assets/icons/logo-brand-blue.svg",
         type: "image/svg+xml",
       }
     ],
+    other: [
+      {
+        rel: "icon",
+        url: "/assets/icons/logo-brand-blue.svg",
+        type: "image/svg+xml",
+      }
+    ]
   },
 };
 
