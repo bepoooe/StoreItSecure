@@ -8,9 +8,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "test:appwrite": "node test-appwrite.js",
-    "test:permissions": "node test-api-permissions.js"
+  "lint": "next lint"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
