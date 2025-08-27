@@ -23,21 +23,40 @@ export const metadata: Metadata = {
       {
         url: "/assets/icons/logo-brand-blue.svg",
         type: "image/svg+xml",
+        sizes: "any",
       },
       {
-        url: "/favicon.svg", 
+        url: "/assets/icons/logo-brand-blue.svg",
+        type: "image/svg+xml", 
+        sizes: "16x16",
+      },
+      {
+        url: "/assets/icons/logo-brand-blue.svg",
         type: "image/svg+xml",
+        sizes: "32x32", 
+      },
+      {
+        url: "/assets/icons/logo-brand-blue.svg",
+        type: "image/svg+xml",
+        sizes: "48x48",
       }
     ],
     apple: [
       {
         url: "/assets/icons/logo-brand-blue.svg",
         type: "image/svg+xml",
+        sizes: "180x180",
       }
     ],
     other: [
       {
         rel: "icon",
+        url: "/assets/icons/logo-brand-blue.svg", 
+        type: "image/svg+xml",
+        sizes: "any",
+      },
+      {
+        rel: "shortcut icon",
         url: "/assets/icons/logo-brand-blue.svg",
         type: "image/svg+xml",
       }
@@ -52,6 +71,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/logo-brand-blue.svg" />
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/logo-brand-blue.svg" sizes="16x16" />
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/logo-brand-blue.svg" sizes="32x32" />
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/logo-brand-blue.svg" sizes="48x48" />
+        <link rel="apple-touch-icon" href="/assets/icons/logo-brand-blue.svg" />
+        <link rel="shortcut icon" href="/assets/icons/logo-brand-blue.svg" />
+      </head>
       <body
         className={`${poppins.variable} font-poppins antialiased`}
       >
